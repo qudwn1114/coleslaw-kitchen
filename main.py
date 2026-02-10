@@ -39,12 +39,14 @@ def start_ws(config):
 # -----------------------------
 # 설정 창
 # -----------------------------
-def open_config_window():
+def open_config_window(initial_config=None):
     """최초 실행 또는 오류 시 config 입력"""
     app = QApplication.instance() or QApplication([])
 
+    config = initial_config
+
     while True:
-        win = ConfigWindow()
+        win = ConfigWindow(config)
         if win.exec() != win.DialogCode.Accepted:
             sys.exit(0)  # 저장 안 하면 종료
 
@@ -56,7 +58,7 @@ def open_config_window():
         QMessageBox.critical(
             None,
             "POS Authentication Failed",
-            f"Cannot start the application.\nReason: {result}"
+            f"Cannot start the application.\nResponse Message: {result}"
         )
         # 루프 반복 → 다시 입력 유도
 
@@ -178,7 +180,7 @@ def main():
     else:
         ok, result = validate_pos(config)
         if not ok:
-            config = open_config_window()
+            config = open_config_window(config)
 
     ws_thread = Thread(target=start_ws, args=(config,), daemon=True)
     ws_thread.start()
