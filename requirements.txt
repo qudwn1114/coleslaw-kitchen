@@ -1,5 +1,5 @@
 websockets==16.0
-PyQt6==6.10.2
+PyQt5==5.15.11
 requests==2.32.5
 pyinstaller==6.18.0
 pystray==0.19.5

@@ -2,8 +2,7 @@ import sys, os, socket
 from threading import Thread
 import pystray
 from PIL import Image
-from PyQt6.QtWidgets import QApplication, QMessageBox, QSystemTrayIcon, QMenu
-from PyQt6.QtGui import QIcon, QAction
+from PyQt5.QtWidgets import QApplication, QMessageBox, QDialog
 import winreg
 
 from config import load_config, get_ws_url, CONFIG_PATH
@@ -47,7 +46,7 @@ def open_config_window(initial_config=None):
 
     while True:
         win = ConfigWindow(config)
-        if win.exec() != win.DialogCode.Accepted:
+        if win.exec_() != QDialog.Accepted:  # PyQt5에서는 exec_() 사용
             sys.exit(0)  # 저장 안 하면 종료
 
         config = load_config()

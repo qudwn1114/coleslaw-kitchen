@@ -26,5 +26,5 @@ RELEASE
 
 
 실행파일 만들기
-- $ pyinstaller --noconsole --onefile --icon=kitchen.ico --add-data "kitchen.ico;." --name "Coleslaw Kitchen" main.py
+- $ pyinstaller --noconsole --onefile --icon=kitchen.ico --add-data "kitchen.ico;." --name "ColeslawKitchen" main.py
 
