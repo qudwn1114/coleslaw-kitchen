@@ -52,6 +52,11 @@ def open_config_window(initial_config=None):
         config = load_config()
         ok, result = validate_pos(config)
         if ok:
+            QMessageBox.information(
+                None,
+                "Configuration Loaded",
+                "POS authentication succeeded! 👋\nStarting the application."
+            )
             return config
 
         QMessageBox.critical(
